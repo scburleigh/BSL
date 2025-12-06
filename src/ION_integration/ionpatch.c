@@ -14,43 +14,50 @@
 
 extern void	*ion_malloc(const char *file, int line, size_t size)
 {
+#if 0
 	writeMemo("[i] ION BSL_MALLOC called.");
+#endif
 	return allocFromIonMemory(file, line, size);
 }
 
 extern void	*ion_calloc(const char *file, int line, size_t ct, size_t size)
 {
+#if 0
 	writeMemo("[i] ION BSL_CALLOC called.");
+#endif
 	return allocFromIonMemory(file, line, ct * size);
 }
 
 extern void	*ion_realloc(const char *file, int line, void *mem, size_t size)
 {
-	writeMemo("[?] ION's function for BSL_REALLOC invoked.  Utility \
-unknown, not yet implemented.");
-	return NULL;
-#if 0
-	/*	Note that, if implemented, this function would not
-	 	be of any use to BSL_BundleCtx_ReallocBTSD, since
-		ION stores extension blocks in the SDR heap rather
-	 	than in system memory.
-	 
-	 	Note that if this function WERE implemented it
-	 	would not work in the way that standard realloc()
-		works.  The space immediately adjacent to a block of
-		ION working memory will typically NOT be unoccupied,
-		i.e, will NOT be available to be silently appended
-		to that block.
-
-		So the content of the original block would instead
-		be copied to a newly allocated block of the requested
-		size; the address of that new block would be returned.	*/
-
 	void	*newMem;
+#if 0
+	writeMemo("[?] ION's dubious function for BSL_REALLOC invoked.");
+	printStackTrace();
+#endif
+	/*	Note that this function is of no use to the 
+	 *	BSL_BundleCtx_ReallocBTSD function, since
+		ION stores extension blocks in the SDR heap
+		rather than in system memory.
+	 
+	 	Note also that the ION implementation of this
+		function does not work in the way that standard
+		realloc() works.  The space immediately adjacent
+		to a block of ION working memory will typically
+		NOT be unoccupied, i.e, will NOT be available
+		to be silently appended to that block.
+
+		So the content of the original block is instead
+		copied to a newly allocated block of the requested
+		size; the address of that new block is returned.	*/
 
 	if (size == 0)
 	{
-		releaseToIonMemory(file, line, mem);
+		if (mem)
+		{
+			releaseToIonMemory(file, line, mem);
+		}
+
 		newMem = NULL;
 	}
 	else
@@ -62,17 +69,21 @@ unknown, not yet implemented.");
 		}
 		else	/*	New memory block was obtained.		*/
 		{
-			memcpy(newMem, mem, size);
-			releaseToIonMemory(file, line, mem);
+			if (mem)
+			{
+				memcpy(newMem, mem, size);
+				releaseToIonMemory(file, line, mem);
+			}
 		}
 	}
 
 	return newMem;
-#endif
 }
 
 extern void	ion_free(const char *file, int line,  void *mem)
 {
+#if 0
 	writeMemo("[i] ION BSL_FREE called.");
+#endif
 	releaseToIonMemory(file, line, mem);
 }

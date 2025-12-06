@@ -32,7 +32,8 @@
 extern "C" {
 #endif
 
-/*	Make this unconditional and use an absolute path for now.  Add
+/*	TODO
+ *	Make this unconditional and use an absolute path for now.  Add
  *	conditionality and relative path when figure out how to do it.
  *	ALSO must modify something somewhere to get ionpatch.c built.	*/
 #include "/home/scott/BSL/src/ION_integration/ionpatch.h"
