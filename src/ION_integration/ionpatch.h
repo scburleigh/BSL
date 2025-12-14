@@ -8,6 +8,9 @@
 	Copyright (c) 2025, California Institute of Technology.
 	ALL RIGHTS RESERVED.  U.S. Government Sponsorship acknowledged.
  									*/
+#include <sys/time.h>
+#include "ion.h"
+
 #define BSL_MALLOC(size)	ion_malloc(__FILE__, __LINE__, size)
 #define BSL_CALLOC(count, size)	ion_calloc(__FILE__, __LINE__, count, size)
 #define BSL_REALLOC(mem, size)	ion_realloc(__FILE__, __LINE__, mem, size)

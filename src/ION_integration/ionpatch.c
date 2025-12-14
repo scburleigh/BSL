@@ -9,7 +9,6 @@
  *	ALL RIGHTS RESERVED.  U.S. Government Sponsorship acknowledged.
  */
 
-#include "ion.h"
 #include "ionpatch.h"
 
 extern void	*ion_malloc(const char *file, int line, size_t size)

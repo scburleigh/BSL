@@ -32,11 +32,14 @@
 extern "C" {
 #endif
 
+/*	--------- Start of modifications for ION integration -----------*/
 /*	TODO
  *	Make this unconditional and use an absolute path for now.  Add
  *	conditionality and relative path when figure out how to do it.
  *	ALSO must modify something somewhere to get ionpatch.c built.	*/
 #include "/home/scott/BSL/src/ION_integration/ionpatch.h"
+
+/*	---------- End of modifications for ION integration ------------*/
 
 /** Part of POSIX.1-2008
  */
